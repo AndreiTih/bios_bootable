@@ -1,0 +1,175 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BEGIN_PM	boot/boot_sect.asm	/^BEGIN_PM:$/;"	l
+BEGIN_PM	boot/pm/putting_it_together.asm	/^BEGIN_PM:$/;"	l
+BOCHS_ROOT	Makefile	/^BOCHS_ROOT = 'C:\/Program Files\/Bochs-2.7'$/;"	m
+BOOT_DRIVE	boot/boot_sect.asm	/^BOOT_DRIVE db 0$/;"	d
+CODE_SEG	boot/pm/gdt.asm	/^CODE_SEG equ gdt_code - gdt_start$/;"	d
+C_SOURCES	Makefile	/^C_SOURCES  = $(wildcard kernel\/*.cpp drivers\/*.cpp)$/;"	m
+DATA_SEG	boot/pm/gdt.asm	/^DATA_SEG equ gdt_data - gdt_start/;"	d
+DISK_ERROR_MSG	boot/disk/disk_load.asm	/^DISK_ERROR_MSG: db "Disk read error !" , 0$/;"	d
+HEADERS	Makefile	/^HEADERS    = $(wildcard kernel\/*.h drivers\/*.h )$/;"	m
+IMAGE_SIZE	Makefile	/^IMAGE_SIZE = 10485760$/;"	m
+KERNEL_OFFSET	boot/boot_sect.asm	/^KERNEL_OFFSET equ 0x1000 ; This is the memory offset to which we will load our kernel$/;"	d
+MAX_COLS	drivers/screen.h	3;"	d
+MAX_ROWS	drivers/screen.h	2;"	d
+MSG_LOAD_KERNEL	boot/boot_sect.asm	/^MSG_LOAD_KERNEL db "Loading kernel into memory." , 0$/;"	d
+MSG_PROT_MODE	boot/boot_sect.asm	/^MSG_PROT_MODE db "Successfully landed in 32 - bit Protected Mode" , 0$/;"	d
+MSG_PROT_MODE	boot/pm/putting_it_together.asm	/^MSG_PROT_MODE db "Successfully landed in 32 - bit Protected Mode" , 0$/;"	d
+MSG_REAL_MODE	boot/boot_sect.asm	/^MSG_REAL_MODE db "Started in 16 - bit Real Mode" , 0$/;"	d
+MSG_REAL_MODE	boot/pm/putting_it_together.asm	/^MSG_REAL_MODE db "Started in 16 - bit Real Mode" , 0$/;"	d
+Makefile	Makefile	1;"	F
+NO_ERROR_MSG	boot/disk/disk_load.asm	/^NO_ERROR_MSG: db "Succsefully loaded from disk!",0/;"	d
+OBJ	Makefile	/^OBJ = ${C_SOURCES:.cpp=.o}$/;"	m
+REG_SCREEN_CTRL	drivers/screen.h	7;"	d
+REG_SCREEN_DATA	drivers/screen.h	8;"	d
+VIDEO_ADDRESS	drivers/screen.h	1;"	d
+VIDEO_MEMORY	boot/pm/print_string_pm.asm	/^VIDEO_MEMORY equ 0xb8000$/;"	d
+WHITE_ON_BLACK	boot/pm/print_string_pm.asm	/^WHITE_ON_BLACK equ 0x0f$/;"	d
+WHITE_ON_BLACK	drivers/screen.h	5;"	d
+_main	kernel/kernel.cpp	/^void _main(){$/;"	f
+add	boot/pm/print_string_pm.asm	/^add ebx , 1 ; Increment EBX to the next char in string.$/;"	l
+add	boot/pm/print_string_pm.asm	/^add edx , 2 ; Move to next character cell in vid mem.$/;"	l
+boot_sect.asm	boot/boot_sect.asm	1;"	F
+call	boot/boot_sect.asm	/^call KERNEL_OFFSET ; Now jump to the address of our loaded$/;"	l
+call	boot/boot_sect.asm	/^call disk_load ; kernel code ) to address KERNEL_OFFSET$/;"	l
+call	boot/boot_sect.asm	/^call load_kernel  ; Load our kernel$/;"	l
+call	boot/boot_sect.asm	/^call print_string ; booting from 16 - bit real mode$/;"	l
+call	boot/boot_sect.asm	/^call print_string$/;"	l
+call	boot/boot_sect.asm	/^call print_string_pm ; announce we are in protected mode$/;"	l
+call	boot/boot_sect.asm	/^call switch_to_pm ; Switch to protected mode , from which$/;"	l
+call	boot/disk/disk_load.asm	/^call print_string$/;"	l
+call	boot/pm/putting_it_together.asm	/^call print_string$/;"	l
+call	boot/pm/putting_it_together.asm	/^call print_string_pm ; Use our 32-bit print routine.$/;"	l
+call	boot/pm/putting_it_together.asm	/^call switch_to_pm ; Note that we never return from here.$/;"	l
+call	boot/pm/switch_to_pm.asm	/^call BEGIN_PM ; Finally , call some well - known label$/;"	l
+call	kernel/kernel_entry.asm	/^call __Z5_mainv$/;"	l
+clear_screen	drivers/screen.cpp	/^void clear_screen () {$/;"	f
+cli	boot/pm/switch_to_pm.asm	/^cli ; We must switch of interrupts until we have$/;"	l
+cmp	boot/disk/disk_load.asm	/^cmp dh , al ; if AL ( sectors read ) != DH ( sectors expected )$/;"	d
+cmp	boot/pm/print_string_pm.asm	/^cmp al , 0 ; if (al == 0) , at end of string , so$/;"	l
+cmp	boot/print/print_string.asm	/^cmp cl, 0$/;"	l
+db	boot/pm/gdt.asm	/^db 0x0 ; Base ( bits 16 -23)$/;"	l
+db	boot/pm/gdt.asm	/^db 0x0 ; Base ( bits 24 -31)$/;"	l
+db	boot/pm/gdt.asm	/^db 10010010b ; 1st flags , type flags$/;"	l
+db	boot/pm/gdt.asm	/^db 10011010b ; 1st flags , type flags$/;"	l
+db	boot/pm/gdt.asm	/^db 11001111b ; 2nd flags , Limit ( bits 16 -19)$/;"	l
+dd	boot/pm/gdt.asm	/^dd 0x0 ; ’dd’ means define double word ( i.e. 4 bytes )$/;"	l
+dd	boot/pm/gdt.asm	/^dd 0x0$/;"	l
+dd	boot/pm/gdt.asm	/^dd gdt_start ; Start address of our GDT$/;"	l
+disk_error	boot/disk/disk_load.asm	/^disk_error:$/;"	l
+disk_load	boot/disk/disk_load.asm	/^disk_load:$/;"	l
+disk_load.asm	boot/disk/disk_load.asm	1;"	F
+dw	boot/boot_sect.asm	/^dw 0xaa55/;"	l
+dw	boot/pm/gdt.asm	/^dw 0x0 ; Base ( bits 0 -15)$/;"	l
+dw	boot/pm/gdt.asm	/^dw 0xffff ; Limit ( bits 0 -15)$/;"	l
+dw	boot/pm/gdt.asm	/^dw gdt_end - gdt_start - 1 ; Size of our GDT , always less one$/;"	l
+dw	boot/pm/putting_it_together.asm	/^dw 0xaa55/;"	l
+functionBeforeMain	kernel/kernel.cpp	/^void functionBeforeMain()$/;"	f
+gdt.asm	boot/pm/gdt.asm	1;"	F
+gdt_code	boot/pm/gdt.asm	/^gdt_code: ; the code segment descriptor$/;"	l
+gdt_data	boot/pm/gdt.asm	/^gdt_data: ; the data segment descriptor$/;"	l
+gdt_descriptor	boot/pm/gdt.asm	/^gdt_descriptor:$/;"	l
+gdt_end	boot/pm/gdt.asm	/^gdt_end: ; The reason for putting a label at the end of the$/;"	l
+gdt_null	boot/pm/gdt.asm	/^gdt_null: ; the mandatory null descriptor$/;"	l
+gdt_start	boot/pm/gdt.asm	/^gdt_start:$/;"	l
+get_cursor	drivers/screen.cpp	/^int get_cursor () {$/;"	f
+get_screen_offset	drivers/screen.cpp	/^int get_screen_offset(int col,int rows)$/;"	f
+handle_scrolling	drivers/screen.cpp	/^int handle_scrolling(int offset)$/;"	f
+inc	boot/print/print_string.asm	/^inc bx ;Increment address$/;"	l
+init_pm	boot/pm/switch_to_pm.asm	/^init_pm:$/;"	l
+int	boot/disk/disk_load.asm	/^int 0x13; BIOS interrupt$/;"	l
+int	boot/print/print_string.asm	/^int 0x10 ; print (al)$/;"	l
+jc	boot/disk/disk_load.asm	/^jc disk_error; Jump if error ( i.e. carry flag set )$/;"	l
+je	boot/pm/print_string_pm.asm	/^je print_string_pm_done; jump to done$/;"	l
+je	boot/print/print_string.asm	/^je printFEnd$/;"	l
+jmp	boot/boot_sect.asm	/^jmp $ ; Hang.$/;"	l
+jmp	boot/boot_sect.asm	/^jmp \$$/;"	l
+jmp	boot/disk/disk_load.asm	/^jmp \$$/;"	l
+jmp	boot/pm/print_string_pm.asm	/^jmp print_string_pm_loop; loop around to print the next char.$/;"	l
+jmp	boot/pm/putting_it_together.asm	/^jmp $ ; Hang.$/;"	l
+jmp	boot/pm/putting_it_together.asm	/^jmp \$$/;"	l
+jmp	boot/pm/switch_to_pm.asm	/^jmp CODE_SEG:init_pm ; Make a far jump ( i.e. to a new segment ) to our 32 - bit$/;"	l
+jmp	boot/print/print_string.asm	/^jmp printFLoop1$/;"	l
+jmp	kernel/kernel_entry.asm	/^jmp $/;"	l
+jne	boot/disk/disk_load.asm	/^jne disk_error ; display error message$/;"	l
+kernel.cpp	kernel/kernel.cpp	1;"	F
+kernel_entry.asm	kernel/kernel_entry.asm	1;"	F
+lgdt	boot/pm/switch_to_pm.asm	/^lgdt [gdt_descriptor] ; Load our global descriptor table , which defines$/;"	l
+load_kernel	boot/boot_sect.asm	/^load_kernel:$/;"	l
+low_level.cpp	drivers/low_level.cpp	1;"	F
+low_level.h	drivers/low_level.h	1;"	F
+mov	boot/boot_sect.asm	/^mov [BOOT_DRIVE], dl ; BIOS stores our boot drive in DL , so it ’s$/;"	l
+mov	boot/boot_sect.asm	/^mov bp , 0x9000 ; Set -up the stack.$/;"	l
+mov	boot/boot_sect.asm	/^mov bx , KERNEL_OFFSET ; Set -up parameters for our disk_load routine , so$/;"	l
+mov	boot/boot_sect.asm	/^mov bx , MSG_LOAD_KERNEL ; Print a message to say we are loading the kernel$/;"	l
+mov	boot/boot_sect.asm	/^mov bx , MSG_REAL_MODE ; Announce that we are starting$/;"	l
+mov	boot/boot_sect.asm	/^mov dh , 15 ; that we load the first 15 sectors ( excluding$/;"	d
+mov	boot/boot_sect.asm	/^mov dl , [BOOT_DRIVE] ; the boot sector ) from the boot disk ( i.e. our$/;"	d
+mov	boot/boot_sect.asm	/^mov ebx , MSG_PROT_MODE ; Use our 32 - bit print routine to$/;"	l
+mov	boot/boot_sect.asm	/^mov sp , bp$/;"	l
+mov	boot/disk/disk_load.asm	/^mov ah , 0x02 ; BIOS read sector function$/;"	l
+mov	boot/disk/disk_load.asm	/^mov al , dh ; Read DH sectors$/;"	l
+mov	boot/disk/disk_load.asm	/^mov bx , DISK_ERROR_MSG$/;"	l
+mov	boot/disk/disk_load.asm	/^mov bx , NO_ERROR_MSG$/;"	l
+mov	boot/disk/disk_load.asm	/^mov ch , 0x00 ; Select cylinder 0$/;"	l
+mov	boot/disk/disk_load.asm	/^mov cl , 0x02 ; Start reading from second sector ( i.e.$/;"	l
+mov	boot/disk/disk_load.asm	/^mov dh , 0x00 ; Select head 0$/;"	d
+mov	boot/pm/print_string_pm.asm	/^mov [edx] , ax ; Store char and attributes at current$/;"	l
+mov	boot/pm/print_string_pm.asm	/^mov ah , WHITE_ON_BLACK ; Store the attributes in AH$/;"	l
+mov	boot/pm/print_string_pm.asm	/^mov al , [ebx] ; Store the char at EBX in AL$/;"	l
+mov	boot/pm/print_string_pm.asm	/^mov edx , VIDEO_MEMORY ; Set edx to the start of vid mem.$/;"	l
+mov	boot/pm/putting_it_together.asm	/^mov bp , 0x9000; Set the stack.$/;"	l
+mov	boot/pm/putting_it_together.asm	/^mov bx , MSG_REAL_MODE$/;"	l
+mov	boot/pm/putting_it_together.asm	/^mov ebx , MSG_PROT_MODE$/;"	l
+mov	boot/pm/putting_it_together.asm	/^mov sp , bp$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov ax , DATA_SEG ; Now in PM , our old segments are meaningless ,$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov cr0 , eax$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov ds , ax ; so we point our segment registers to the$/;"	d
+mov	boot/pm/switch_to_pm.asm	/^mov eax , cr0 ; To make the switch to protected mode , we set$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov ebp , 0x90000 ; Update our stack position so it is right$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov es , ax$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov esp , ebp ; at the top of the free space.$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov fs , ax$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov gs , ax$/;"	l
+mov	boot/pm/switch_to_pm.asm	/^mov ss , ax ; data selector we defined in our GDT$/;"	l
+mov	boot/print/print_string.asm	/^mov ah , 0x0e ; int 10\/ ah = 0eh -> scrolling teletype BIOS routine$/;"	l
+mov	boot/print/print_string.asm	/^mov al, [bx] ; then copy bl ( i.e. 8- bit char ) to al$/;"	l
+mov	boot/print/print_string.asm	/^mov cl, [bx]$/;"	l
+or	boot/pm/switch_to_pm.asm	/^or eax , 0x1 ; the first bit of CR0 , a control register$/;"	l
+pop	boot/disk/disk_load.asm	/^pop dx ; Restore DX from the stack$/;"	d
+popa	boot/pm/print_string_pm.asm	/^popa$/;"	l
+popa	boot/print/print_string.asm	/^popa$/;"	l
+port_byte_in	drivers/low_level.cpp	/^unsigned char port_byte_in(unsigned short port) {$/;"	f
+port_byte_out	drivers/low_level.cpp	/^void port_byte_out(unsigned short port , unsigned char data){$/;"	f
+port_word_in	drivers/low_level.cpp	/^unsigned short port_word_in (unsigned short port) {$/;"	f
+port_word_out	drivers/low_level.cpp	/^void port_word_out (unsigned short port , unsigned short data ) {$/;"	f
+printFEnd	boot/print/print_string.asm	/^printFEnd:$/;"	l
+printFLoop1	boot/print/print_string.asm	/^printFLoop1:$/;"	l
+print_at	drivers/screen.cpp	/^void print_at ( char* message , int col , int row ) {$/;"	f
+print_char	drivers/screen.cpp	/^void print_char(char character , int col , int row , char attribute_byte) {$/;"	f
+print_string	boot/print/print_string.asm	/^print_string: ; Function that prints the string starting at the address inside the bx register$/;"	l
+print_string.asm	boot/print/print_string.asm	1;"	F
+print_string_pm	boot/pm/print_string_pm.asm	/^print_string_pm:$/;"	l
+print_string_pm.asm	boot/pm/print_string_pm.asm	1;"	F
+print_string_pm_done	boot/pm/print_string_pm.asm	/^print_string_pm_done:$/;"	l
+print_string_pm_loop	boot/pm/print_string_pm.asm	/^print_string_pm_loop:$/;"	l
+push	boot/disk/disk_load.asm	/^push dx ; Store DX on stack so later we can recall$/;"	d
+pusha	boot/pm/print_string_pm.asm	/^pusha$/;"	l
+pusha	boot/print/print_string.asm	/^pusha$/;"	l
+putting_it_together.asm	boot/pm/putting_it_together.asm	1;"	F
+ret	boot/boot_sect.asm	/^ret$/;"	l
+ret	boot/disk/disk_load.asm	/^ret$/;"	l
+ret	boot/pm/print_string_pm.asm	/^ret ; Return from the function/;"	l
+ret	boot/print/print_string.asm	/^ret/;"	l
+screen.cpp	drivers/screen.cpp	1;"	F
+screen.h	drivers/screen.h	1;"	F
+set_cursor	drivers/screen.cpp	/^void set_cursor (int offset ) {$/;"	f
+switch_to_pm	boot/pm/switch_to_pm.asm	/^switch_to_pm:$/;"	l
+switch_to_pm.asm	boot/pm/switch_to_pm.asm	1;"	F
+times	boot/boot_sect.asm	/^times 510 -($ - $$) db 0$/;"	l
+times	boot/pm/putting_it_together.asm	/^times 510 -( $ - $$ ) db 0$/;"	l
